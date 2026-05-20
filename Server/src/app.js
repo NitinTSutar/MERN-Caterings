@@ -1,8 +1,8 @@
-﻿const express = require("express");
-const cors = require("cors");
-const morgan = require("morgan");
-const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
-const healthRoutes = require("./routes/healthRoutes");
+﻿import express from "express";
+import cors from "cors";
+import morgan from "morgan";
+import catererRoutes from "./routes/catererRoutes.js"
+import { notFound, errorHandler } from "./middlewares/errorMiddleware.js";
 
 const app = express();
 
@@ -10,13 +10,13 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
 
-app.get("/", (req, res) => {
-  res.json({ message: "MERN Caterings API" });
-});
 
-app.use("/api/health", healthRoutes);
+// Middleware
+
+// Routes
+app.use("/api/caterers", catererRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
 
-module.exports = app;
+export default app;
